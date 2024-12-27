@@ -1,4 +1,4 @@
-set -l subcommands completions.create messages.create messages.count_tokens messages.batches.create messages.batches.retrieve messages.batches.delete messages.batches.cancel models.retrieve
+set -l subcommands completions.create messages.create messages.count_tokens messages.batches.create messages.batches.retrieve messages.batches.list messages.batches.delete messages.batches.cancel models.retrieve models.list
 complete -c anthropic-cli --no-files \
   -n "not __fish_seen_subcommand_from $subcommands" \
   -a "$subcommands"
@@ -19,6 +19,9 @@ complete -c anthropic-cli --no-files \
   -n "__fish_seen_subcommand_from messages.batches.retrieve" \
   -a "--message-batch-id"
 complete -c anthropic-cli --no-files \
+  -n "__fish_seen_subcommand_from messages.batches.list" \
+  -a ""
+complete -c anthropic-cli --no-files \
   -n "__fish_seen_subcommand_from messages.batches.delete" \
   -a "--message-batch-id"
 complete -c anthropic-cli --no-files \
@@ -27,6 +30,9 @@ complete -c anthropic-cli --no-files \
 complete -c anthropic-cli --no-files \
   -n "__fish_seen_subcommand_from models.retrieve" \
   -a "--model-id"
+complete -c anthropic-cli --no-files \
+  -n "__fish_seen_subcommand_from models.list" \
+  -a ""
 
  complete -c anthropic-cli --no-files \
    -n "__fish_seen_subcommand_from completions.create" \

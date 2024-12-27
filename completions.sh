@@ -5,12 +5,12 @@ _main()
 {
     COMPREPLY=()
 
-    local subcommands="completions.create messages.create messages.count_tokens messages.batches.create messages.batches.retrieve messages.batches.delete messages.batches.cancel models.retrieve"
+    local subcommands="completions.create messages.create messages.count_tokens messages.batches.create messages.batches.retrieve messages.batches.list messages.batches.delete messages.batches.cancel models.retrieve models.list"
 
     if [[ "$COMP_CWORD" -eq 1 ]]
     then
       local cur="${COMP_WORDS[COMP_CWORD]}"
-      COMPREPLY=($(compgen -W "$subcommands" -- "$cur"))
+      COMPREPLY=( $(compgen -W "$subcommands" -- "$cur") )
       return
     fi
 
@@ -32,6 +32,9 @@ _main()
       messages.batches.retrieve)
         flags="--message-batch-id"
         ;;
+      messages.batches.list)
+        flags=""
+        ;;
       messages.batches.delete)
         flags="--message-batch-id"
         ;;
@@ -40,6 +43,9 @@ _main()
         ;;
       models.retrieve)
         flags="--model-id"
+        ;;
+      models.list)
+        flags=""
         ;;
       *)
         # Unknown subcommand

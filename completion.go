@@ -20,14 +20,14 @@ func createCompletionsCreateSubcommand(initialJson []byte) Subcommand {
 		"max-tokens-to-sample",
 		"",
 		func(string string) error {
-			integer, err := parseInt(string)
+			int, err := parseInt(string)
 			if err != nil {
 				return err
 			}
-			var err2 error
-			json, err2 = jsonSet(json, "max_tokens_to_sample", integer)
-			if err2 != nil {
-				return err2
+			var jsonErr error
+			json, jsonErr = jsonSet(json, "max_tokens_to_sample", int)
+			if jsonErr != nil {
+				return jsonErr
 			}
 			return nil
 		},
@@ -37,10 +37,10 @@ func createCompletionsCreateSubcommand(initialJson []byte) Subcommand {
 		"model",
 		"",
 		func(string string) error {
-			var err error
-			json, err = jsonSet(json, "model", string)
-			if err != nil {
-				return err
+			var jsonErr error
+			json, jsonErr = jsonSet(json, "model", string)
+			if jsonErr != nil {
+				return jsonErr
 			}
 			return nil
 		},
@@ -50,10 +50,10 @@ func createCompletionsCreateSubcommand(initialJson []byte) Subcommand {
 		"prompt",
 		"",
 		func(string string) error {
-			var err error
-			json, err = jsonSet(json, "prompt", string)
-			if err != nil {
-				return err
+			var jsonErr error
+			json, jsonErr = jsonSet(json, "prompt", string)
+			if jsonErr != nil {
+				return jsonErr
 			}
 			return nil
 		},
@@ -63,10 +63,10 @@ func createCompletionsCreateSubcommand(initialJson []byte) Subcommand {
 		"metadata.user_id",
 		"",
 		func(string string) error {
-			var err error
-			json, err = jsonSet(json, "metadata.user_id", string)
-			if err != nil {
-				return err
+			var jsonErr error
+			json, jsonErr = jsonSet(json, "metadata.user_id", string)
+			if jsonErr != nil {
+				return jsonErr
 			}
 			return nil
 		},
@@ -76,22 +76,23 @@ func createCompletionsCreateSubcommand(initialJson []byte) Subcommand {
 		"stop-sequences",
 		"",
 		func(string string) error {
-			var err error
-			json, err = jsonSet(json, "stop_sequences.#", string)
-			if err != nil {
-				return err
+			var jsonErr error
+			json, jsonErr = jsonSet(json, "stop_sequences.#", string)
+			if jsonErr != nil {
+				return jsonErr
 			}
 			return nil
 		},
 	)
+
 	flagSet.Func(
 		"+stop_sequence",
 		"",
 		func(string string) error {
-			var err error
-			json, err = jsonSet(json, "stop_sequences.-1", string)
-			if err != nil {
-				return err
+			var jsonErr error
+			json, jsonErr = jsonSet(json, "stop_sequences.-1", string)
+			if jsonErr != nil {
+				return jsonErr
 			}
 			return nil
 		},
@@ -101,14 +102,14 @@ func createCompletionsCreateSubcommand(initialJson []byte) Subcommand {
 		"temperature",
 		"",
 		func(string string) error {
-			number, err := parseFloat(string)
+			float, err := parseFloat(string)
 			if err != nil {
 				return err
 			}
-			var err2 error
-			json, err2 = jsonSet(json, "temperature", number)
-			if err2 != nil {
-				return err2
+			var jsonErr error
+			json, jsonErr = jsonSet(json, "temperature", float)
+			if jsonErr != nil {
+				return jsonErr
 			}
 			return nil
 		},
@@ -118,14 +119,14 @@ func createCompletionsCreateSubcommand(initialJson []byte) Subcommand {
 		"top-k",
 		"",
 		func(string string) error {
-			integer, err := parseInt(string)
+			int, err := parseInt(string)
 			if err != nil {
 				return err
 			}
-			var err2 error
-			json, err2 = jsonSet(json, "top_k", integer)
-			if err2 != nil {
-				return err2
+			var jsonErr error
+			json, jsonErr = jsonSet(json, "top_k", int)
+			if jsonErr != nil {
+				return jsonErr
 			}
 			return nil
 		},
@@ -135,14 +136,14 @@ func createCompletionsCreateSubcommand(initialJson []byte) Subcommand {
 		"top-p",
 		"",
 		func(string string) error {
-			number, err := parseFloat(string)
+			float, err := parseFloat(string)
 			if err != nil {
 				return err
 			}
-			var err2 error
-			json, err2 = jsonSet(json, "top_p", number)
-			if err2 != nil {
-				return err2
+			var jsonErr error
+			json, jsonErr = jsonSet(json, "top_p", float)
+			if jsonErr != nil {
+				return jsonErr
 			}
 			return nil
 		},
