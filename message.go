@@ -15,6 +15,7 @@ import (
 
 func createMessagesCreateSubcommand(initialBody []byte) Subcommand {
 	query := []byte("{}")
+	header := []byte("{}")
 	body := initialBody
 	var flagSet = flag.NewFlagSet("messages.create", flag.ExitOnError)
 
@@ -555,6 +556,7 @@ func createMessagesCreateSubcommand(initialBody []byte) Subcommand {
 				anthropic.MessageNewParams{},
 				option.WithMiddleware(func(r *http.Request, mn option.MiddlewareNext) (*http.Response, error) {
 					r.URL.RawQuery = serializeQuery(query).Encode()
+					r.Header = serializeHeader(header)
 					return mn(r)
 				}),
 				option.WithRequestBody("application/json", body),
@@ -568,6 +570,7 @@ func createMessagesCreateSubcommand(initialBody []byte) Subcommand {
 
 func createMessagesCountTokensSubcommand(initialBody []byte) Subcommand {
 	query := []byte("{}")
+	header := []byte("{}")
 	body := initialBody
 	var flagSet = flag.NewFlagSet("messages.count_tokens", flag.ExitOnError)
 
@@ -1008,6 +1011,7 @@ func createMessagesCountTokensSubcommand(initialBody []byte) Subcommand {
 				anthropic.MessageCountTokensParams{},
 				option.WithMiddleware(func(r *http.Request, mn option.MiddlewareNext) (*http.Response, error) {
 					r.URL.RawQuery = serializeQuery(query).Encode()
+					r.Header = serializeHeader(header)
 					return mn(r)
 				}),
 				option.WithRequestBody("application/json", body),

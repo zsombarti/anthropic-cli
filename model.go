@@ -16,6 +16,7 @@ import (
 func createModelsRetrieveSubcommand() Subcommand {
 	var modelID *string = nil
 	query := []byte("{}")
+	header := []byte("{}")
 	var flagSet = flag.NewFlagSet("models.retrieve", flag.ExitOnError)
 
 	flagSet.Func(
@@ -35,6 +36,7 @@ func createModelsRetrieveSubcommand() Subcommand {
 				*modelID,
 				option.WithMiddleware(func(r *http.Request, mn option.MiddlewareNext) (*http.Response, error) {
 					r.URL.RawQuery = serializeQuery(query).Encode()
+					r.Header = serializeHeader(header)
 					return mn(r)
 				}),
 			)
@@ -50,6 +52,7 @@ func createModelsRetrieveSubcommand() Subcommand {
 
 func createModelsListSubcommand() Subcommand {
 	query := []byte("{}")
+	header := []byte("{}")
 	var flagSet = flag.NewFlagSet("models.list", flag.ExitOnError)
 
 	flagSet.Func(
@@ -103,6 +106,7 @@ func createModelsListSubcommand() Subcommand {
 				anthropic.ModelListParams{},
 				option.WithMiddleware(func(r *http.Request, mn option.MiddlewareNext) (*http.Response, error) {
 					r.URL.RawQuery = serializeQuery(query).Encode()
+					r.Header = serializeHeader(header)
 					return mn(r)
 				}),
 			)

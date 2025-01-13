@@ -3,6 +3,7 @@ package main
 import (
 	"io"
 	"log"
+	"net/http"
 	"net/url"
 	"os"
 	"strconv"
@@ -47,8 +48,8 @@ func jsonSet(json []byte, path string, value interface{}) ([]byte, error) {
 	return sjson.SetBytes(json, path, value)
 }
 
-func serializeQuery(query []byte) url.Values {
-	serializedQuery := url.Values{}
+func serializeQuery(params []byte) url.Values {
+	serialized := url.Values{}
 
 	var serialize func(value gjson.Result, path string)
 	serialize = func(res gjson.Result, path string) {
@@ -68,16 +69,44 @@ func serializeQuery(query []byte) url.Values {
 				serialize(value, path)
 			}
 		} else {
-			serializedQuery.Add(path, res.String())
+			serialized.Add(path, res.String())
 		}
 	}
-	serialize(gjson.GetBytes(query, "@this"), "")
+	serialize(gjson.GetBytes(params, "@this"), "")
 
-	for key, values := range serializedQuery {
-		serializedQuery.Set(key, strings.Join(values, ","))
+	for key, values := range serialized {
+		serialized.Set(key, strings.Join(values, ","))
 	}
 
-	return serializedQuery
+	return serialized
+}
+
+func serializeHeader(params []byte) http.Header {
+	serialized := http.Header{}
+
+	var serialize func(value gjson.Result, path string)
+	serialize = func(res gjson.Result, path string) {
+		if res.IsObject() {
+			for key, value := range res.Map() {
+				newPath := path
+				if len(newPath) > 0 {
+					newPath += "."
+				}
+				newPath += key
+
+				serialize(value, newPath)
+			}
+		} else if res.IsArray() {
+			for _, value := range res.Array() {
+				serialize(value, path)
+			}
+		} else {
+			serialized.Add(path, res.String())
+		}
+	}
+	serialize(gjson.GetBytes(params, "@this"), "")
+
+	return serialized
 }
 
 func getStdInput() []byte {

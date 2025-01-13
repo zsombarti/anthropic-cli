@@ -15,6 +15,7 @@ import (
 
 func createCompletionsCreateSubcommand(initialBody []byte) Subcommand {
 	query := []byte("{}")
+	header := []byte("{}")
 	body := initialBody
 	var flagSet = flag.NewFlagSet("completions.create", flag.ExitOnError)
 
@@ -165,6 +166,7 @@ func createCompletionsCreateSubcommand(initialBody []byte) Subcommand {
 				anthropic.CompletionNewParams{},
 				option.WithMiddleware(func(r *http.Request, mn option.MiddlewareNext) (*http.Response, error) {
 					r.URL.RawQuery = serializeQuery(query).Encode()
+					r.Header = serializeHeader(header)
 					return mn(r)
 				}),
 				option.WithRequestBody("application/json", body),

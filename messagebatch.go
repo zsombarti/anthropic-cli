@@ -15,6 +15,7 @@ import (
 
 func createMessagesBatchesCreateSubcommand(initialBody []byte) Subcommand {
 	query := []byte("{}")
+	header := []byte("{}")
 	body := initialBody
 	var flagSet = flag.NewFlagSet("messages.batches.create", flag.ExitOnError)
 
@@ -588,6 +589,7 @@ func createMessagesBatchesCreateSubcommand(initialBody []byte) Subcommand {
 				anthropic.MessageBatchNewParams{},
 				option.WithMiddleware(func(r *http.Request, mn option.MiddlewareNext) (*http.Response, error) {
 					r.URL.RawQuery = serializeQuery(query).Encode()
+					r.Header = serializeHeader(header)
 					return mn(r)
 				}),
 				option.WithRequestBody("application/json", body),
@@ -605,6 +607,7 @@ func createMessagesBatchesCreateSubcommand(initialBody []byte) Subcommand {
 func createMessagesBatchesRetrieveSubcommand() Subcommand {
 	var messageBatchID *string = nil
 	query := []byte("{}")
+	header := []byte("{}")
 	var flagSet = flag.NewFlagSet("messages.batches.retrieve", flag.ExitOnError)
 
 	flagSet.Func(
@@ -624,6 +627,7 @@ func createMessagesBatchesRetrieveSubcommand() Subcommand {
 				*messageBatchID,
 				option.WithMiddleware(func(r *http.Request, mn option.MiddlewareNext) (*http.Response, error) {
 					r.URL.RawQuery = serializeQuery(query).Encode()
+					r.Header = serializeHeader(header)
 					return mn(r)
 				}),
 			)
@@ -639,6 +643,7 @@ func createMessagesBatchesRetrieveSubcommand() Subcommand {
 
 func createMessagesBatchesListSubcommand() Subcommand {
 	query := []byte("{}")
+	header := []byte("{}")
 	var flagSet = flag.NewFlagSet("messages.batches.list", flag.ExitOnError)
 
 	flagSet.Func(
@@ -692,6 +697,7 @@ func createMessagesBatchesListSubcommand() Subcommand {
 				anthropic.MessageBatchListParams{},
 				option.WithMiddleware(func(r *http.Request, mn option.MiddlewareNext) (*http.Response, error) {
 					r.URL.RawQuery = serializeQuery(query).Encode()
+					r.Header = serializeHeader(header)
 					return mn(r)
 				}),
 			)
@@ -708,6 +714,7 @@ func createMessagesBatchesListSubcommand() Subcommand {
 func createMessagesBatchesDeleteSubcommand(initialBody []byte) Subcommand {
 	var messageBatchID *string = nil
 	query := []byte("{}")
+	header := []byte("{}")
 	body := initialBody
 	var flagSet = flag.NewFlagSet("messages.batches.delete", flag.ExitOnError)
 
@@ -728,6 +735,7 @@ func createMessagesBatchesDeleteSubcommand(initialBody []byte) Subcommand {
 				*messageBatchID,
 				option.WithMiddleware(func(r *http.Request, mn option.MiddlewareNext) (*http.Response, error) {
 					r.URL.RawQuery = serializeQuery(query).Encode()
+					r.Header = serializeHeader(header)
 					return mn(r)
 				}),
 				option.WithRequestBody("application/json", body),
@@ -745,6 +753,7 @@ func createMessagesBatchesDeleteSubcommand(initialBody []byte) Subcommand {
 func createMessagesBatchesCancelSubcommand(initialBody []byte) Subcommand {
 	var messageBatchID *string = nil
 	query := []byte("{}")
+	header := []byte("{}")
 	body := initialBody
 	var flagSet = flag.NewFlagSet("messages.batches.cancel", flag.ExitOnError)
 
@@ -765,6 +774,7 @@ func createMessagesBatchesCancelSubcommand(initialBody []byte) Subcommand {
 				*messageBatchID,
 				option.WithMiddleware(func(r *http.Request, mn option.MiddlewareNext) (*http.Response, error) {
 					r.URL.RawQuery = serializeQuery(query).Encode()
+					r.Header = serializeHeader(header)
 					return mn(r)
 				}),
 				option.WithRequestBody("application/json", body),
