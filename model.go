@@ -19,6 +19,14 @@ var modelsRetrieve = cli.Command{
 		&cli.StringFlag{
 			Name: "model-id",
 		},
+		&cli.StringFlag{
+			Name:   "betas",
+			Action: getAPIFlagAction[string]("header", "anthropic-beta.#"),
+		},
+		&cli.StringFlag{
+			Name:   "+beta",
+			Action: getAPIFlagAction[string]("header", "anthropic-beta.-1"),
+		},
 	},
 	Before:          initAPICommand,
 	Action:          handleModelsRetrieve,
@@ -41,6 +49,14 @@ var modelsList = cli.Command{
 			Name:   "limit",
 			Action: getAPIFlagAction[int64]("query", "limit"),
 		},
+		&cli.StringFlag{
+			Name:   "betas",
+			Action: getAPIFlagAction[string]("header", "anthropic-beta.#"),
+		},
+		&cli.StringFlag{
+			Name:   "+beta",
+			Action: getAPIFlagAction[string]("header", "anthropic-beta.-1"),
+		},
 	},
 	Before:          initAPICommand,
 	Action:          handleModelsList,
@@ -53,6 +69,7 @@ func handleModelsRetrieve(ctx context.Context, cmd *cli.Command) error {
 	res, err := cc.client.Models.Get(
 		context.TODO(),
 		cmd.Value("model-id").(string),
+		anthropic.ModelGetParams{},
 		option.WithMiddleware(cc.AsMiddleware()),
 	)
 	if err != nil {

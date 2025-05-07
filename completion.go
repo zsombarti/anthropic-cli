@@ -51,6 +51,14 @@ var completionsCreate = cli.Command{
 			Name:   "top-p",
 			Action: getAPIFlagAction[float64]("body", "top_p"),
 		},
+		&cli.StringFlag{
+			Name:   "betas",
+			Action: getAPIFlagAction[string]("header", "anthropic-beta.#"),
+		},
+		&cli.StringFlag{
+			Name:   "+beta",
+			Action: getAPIFlagAction[string]("header", "anthropic-beta.-1"),
+		},
 	},
 	Before:          initAPICommand,
 	Action:          handleCompletionsCreate,
