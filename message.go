@@ -21,8 +21,12 @@ var messagesCreate = cli.Command{
 			Action: getAPIFlagAction[int64]("body", "max_tokens"),
 		},
 		&cli.StringFlag{
-			Name:   "messages.content.text",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.text"),
+			Name:   "messages.content.id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.id"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.name",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.name"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.type",
@@ -31,6 +35,42 @@ var messagesCreate = cli.Command{
 		&cli.StringFlag{
 			Name:   "messages.content.cache_control.type",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.encrypted_content",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.encrypted_content"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.title",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.title"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.type",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.url",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.url"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.page_age",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.page_age"),
+		},
+		&cli.BoolFlag{
+			Name:   "messages.content.+content",
+			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.-1", map[string]interface{}{}),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.error_code",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.error_code"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.tool_use_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.tool_use_id"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.text",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.text"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.citations.cited_text",
@@ -103,46 +143,6 @@ var messagesCreate = cli.Command{
 		&cli.StringFlag{
 			Name:   "messages.content.source.url",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.url"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.id",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.id"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.name",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.name"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.encrypted_content",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.encrypted_content"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.title",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.title"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.type",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.type"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.url",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.url"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.page_age",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.page_age"),
-		},
-		&cli.BoolFlag{
-			Name:   "messages.content.+content",
-			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.-1", map[string]interface{}{}),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.error_code",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.error_code"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.tool_use_id",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.tool_use_id"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.content.text",
@@ -365,6 +365,10 @@ var messagesCreate = cli.Command{
 			Action: getAPIFlagAction[string]("body", "metadata.user_id"),
 		},
 		&cli.StringFlag{
+			Name:   "service-tier",
+			Action: getAPIFlagAction[string]("body", "service_tier"),
+		},
+		&cli.StringFlag{
 			Name:   "stop-sequences",
 			Action: getAPIFlagAction[string]("body", "stop_sequences.#"),
 		},
@@ -547,8 +551,12 @@ var messagesCountTokens = cli.Command{
 	Usage: "Count the number of tokens in a Message.",
 	Flags: []cli.Flag{
 		&cli.StringFlag{
-			Name:   "messages.content.text",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.text"),
+			Name:   "messages.content.id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.id"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.name",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.name"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.type",
@@ -557,6 +565,42 @@ var messagesCountTokens = cli.Command{
 		&cli.StringFlag{
 			Name:   "messages.content.cache_control.type",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.encrypted_content",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.encrypted_content"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.title",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.title"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.type",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.url",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.url"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.page_age",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.page_age"),
+		},
+		&cli.BoolFlag{
+			Name:   "messages.content.+content",
+			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.-1", map[string]interface{}{}),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.error_code",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.error_code"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.tool_use_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.tool_use_id"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.text",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.text"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.citations.cited_text",
@@ -629,46 +673,6 @@ var messagesCountTokens = cli.Command{
 		&cli.StringFlag{
 			Name:   "messages.content.source.url",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.url"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.id",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.id"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.name",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.name"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.encrypted_content",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.encrypted_content"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.title",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.title"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.type",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.type"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.url",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.url"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.page_age",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.page_age"),
-		},
-		&cli.BoolFlag{
-			Name:   "messages.content.+content",
-			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.-1", map[string]interface{}{}),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.error_code",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.error_code"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.tool_use_id",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.tool_use_id"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.content.text",

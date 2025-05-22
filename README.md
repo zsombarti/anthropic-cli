@@ -21,8 +21,9 @@ anthropic-cli [resource] [command] [flags]
 ```sh
 anthropic-cli messages create \
   --max-tokens 1024 \
-  --messages.content.text x \
-  --messages.content.type text \
+  --messages.content.id srvtoolu_SQfNkl1n_JR_ \
+  --messages.content.name web_search \
+  --messages.content.type server_tool_use \
   --messages.role user \
   --model claude-3-5-sonnet-latest
 ```

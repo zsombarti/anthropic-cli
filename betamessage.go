@@ -21,8 +21,12 @@ var betaMessagesCreate = cli.Command{
 			Action: getAPIFlagAction[int64]("body", "max_tokens"),
 		},
 		&cli.StringFlag{
-			Name:   "messages.content.text",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.text"),
+			Name:   "messages.content.id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.id"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.name",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.name"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.type",
@@ -31,6 +35,150 @@ var betaMessagesCreate = cli.Command{
 		&cli.StringFlag{
 			Name:   "messages.content.cache_control.type",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.cache_control.ttl",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.cache_control.ttl"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.encrypted_content",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.encrypted_content"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.title",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.title"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.type",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.url",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.url"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.page_age",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.page_age"),
+		},
+		&cli.BoolFlag{
+			Name:   "messages.content.+content",
+			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.-1", map[string]interface{}{}),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.error_code",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.error_code"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.tool_use_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.tool_use_id"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.content.file_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.content.#.file_id"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.content.type",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.content.#.type"),
+		},
+		&cli.BoolFlag{
+			Name:   "messages.content.content.+content",
+			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.content.-1", map[string]interface{}{}),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.return_code",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.return_code"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.stderr",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.stderr"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.stdout",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.stdout"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.server_name",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.server_name"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.text",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.text"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.cache_control.type",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.cache_control.ttl",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.cache_control.ttl"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.cited_text",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.cited_text"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.document_index",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.document_index"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.document_title",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.document_title"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.end_char_index",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_char_index"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.start_char_index",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_char_index"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.type",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.type"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.end_page_number",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_page_number"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.start_page_number",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_page_number"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.end_block_index",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_block_index"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.start_block_index",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_block_index"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.encrypted_index",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.encrypted_index"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.title",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.title"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.url",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.url"),
+		},
+		&cli.BoolFlag{
+			Name:   "messages.content.content.+citation",
+			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.#.citations.-1", map[string]interface{}{}),
+		},
+		&cli.BoolFlag{
+			Name:   "messages.content.is_error",
+			Action: getAPIFlagAction[bool]("body", "messages.#.content.#.is_error"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.text",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.text"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.citations.cited_text",
@@ -105,108 +253,8 @@ var betaMessagesCreate = cli.Command{
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.url"),
 		},
 		&cli.StringFlag{
-			Name:   "messages.content.id",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.id"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.name",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.name"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.encrypted_content",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.encrypted_content"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.title",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.title"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.type",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.type"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.url",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.url"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.page_age",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.page_age"),
-		},
-		&cli.BoolFlag{
-			Name:   "messages.content.+content",
-			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.-1", map[string]interface{}{}),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.error_code",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.error_code"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.tool_use_id",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.tool_use_id"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.text",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.text"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.cache_control.type",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.cache_control.type"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.cited_text",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.cited_text"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.document_index",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.document_index"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.document_title",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.document_title"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.end_char_index",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_char_index"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.start_char_index",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_char_index"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.type",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.type"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.end_page_number",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_page_number"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.start_page_number",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_page_number"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.end_block_index",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_block_index"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.start_block_index",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_block_index"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.encrypted_index",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.encrypted_index"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.title",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.title"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.url",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.url"),
-		},
-		&cli.BoolFlag{
-			Name:   "messages.content.content.+citation",
-			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.#.citations.-1", map[string]interface{}{}),
+			Name:   "messages.content.source.file_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.file_id"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.content.source.data",
@@ -224,9 +272,9 @@ var betaMessagesCreate = cli.Command{
 			Name:   "messages.content.content.source.url",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.source.url"),
 		},
-		&cli.BoolFlag{
-			Name:   "messages.content.is_error",
-			Action: getAPIFlagAction[bool]("body", "messages.#.content.#.is_error"),
+		&cli.StringFlag{
+			Name:   "messages.content.content.source.file_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.source.file_id"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.source.content",
@@ -243,6 +291,10 @@ var betaMessagesCreate = cli.Command{
 		&cli.StringFlag{
 			Name:   "messages.content.source.content.cache_control.type",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.content.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.source.content.cache_control.ttl",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.content.#.cache_control.ttl"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.source.content.citations.cited_text",
@@ -316,6 +368,10 @@ var betaMessagesCreate = cli.Command{
 			Name:   "messages.content.source.content.source.url",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.content.#.source.url"),
 		},
+		&cli.StringFlag{
+			Name:   "messages.content.source.content.source.file_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.content.#.source.file_id"),
+		},
 		&cli.BoolFlag{
 			Name:   "messages.content.source.+content",
 			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.source.content.-1", map[string]interface{}{}),
@@ -344,6 +400,10 @@ var betaMessagesCreate = cli.Command{
 			Name:   "messages.content.data",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.data"),
 		},
+		&cli.StringFlag{
+			Name:   "messages.content.file_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.file_id"),
+		},
 		&cli.BoolFlag{
 			Name:   "messages.+content",
 			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.-1", map[string]interface{}{}),
@@ -361,8 +421,48 @@ var betaMessagesCreate = cli.Command{
 			Action: getAPIFlagAction[string]("body", "model"),
 		},
 		&cli.StringFlag{
+			Name:   "container",
+			Action: getAPIFlagAction[string]("body", "container"),
+		},
+		&cli.StringFlag{
+			Name:   "mcp-servers.name",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.name"),
+		},
+		&cli.StringFlag{
+			Name:   "mcp-servers.type",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.type"),
+		},
+		&cli.StringFlag{
+			Name:   "mcp-servers.url",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.url"),
+		},
+		&cli.StringFlag{
+			Name:   "mcp-servers.authorization_token",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.authorization_token"),
+		},
+		&cli.StringFlag{
+			Name:   "mcp-servers.tool_configuration.allowed_tools",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.tool_configuration.allowed_tools.#"),
+		},
+		&cli.StringFlag{
+			Name:   "mcp-servers.tool_configuration.+allowed_tool",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.tool_configuration.allowed_tools.-1"),
+		},
+		&cli.BoolFlag{
+			Name:   "mcp-servers.tool_configuration.enabled",
+			Action: getAPIFlagAction[bool]("body", "mcp_servers.#.tool_configuration.enabled"),
+		},
+		&cli.BoolFlag{
+			Name:   "+mcp_server",
+			Action: getAPIFlagActionWithValue[bool]("body", "mcp_servers.-1", map[string]interface{}{}),
+		},
+		&cli.StringFlag{
 			Name:   "metadata.user_id",
 			Action: getAPIFlagAction[string]("body", "metadata.user_id"),
+		},
+		&cli.StringFlag{
+			Name:   "service-tier",
+			Action: getAPIFlagAction[string]("body", "service_tier"),
 		},
 		&cli.StringFlag{
 			Name:   "stop-sequences",
@@ -383,6 +483,10 @@ var betaMessagesCreate = cli.Command{
 		&cli.StringFlag{
 			Name:   "system.cache_control.type",
 			Action: getAPIFlagAction[string]("body", "system.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "system.cache_control.ttl",
+			Action: getAPIFlagAction[string]("body", "system.#.cache_control.ttl"),
 		},
 		&cli.StringFlag{
 			Name:   "system.citations.cited_text",
@@ -481,6 +585,10 @@ var betaMessagesCreate = cli.Command{
 			Action: getAPIFlagAction[string]("body", "tools.#.cache_control.type"),
 		},
 		&cli.StringFlag{
+			Name:   "tools.cache_control.ttl",
+			Action: getAPIFlagAction[string]("body", "tools.#.cache_control.ttl"),
+		},
+		&cli.StringFlag{
 			Name:   "tools.description",
 			Action: getAPIFlagAction[string]("body", "tools.#.description"),
 		},
@@ -571,8 +679,12 @@ var betaMessagesCountTokens = cli.Command{
 	Usage: "Count the number of tokens in a Message.",
 	Flags: []cli.Flag{
 		&cli.StringFlag{
-			Name:   "messages.content.text",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.text"),
+			Name:   "messages.content.id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.id"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.name",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.name"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.type",
@@ -581,6 +693,150 @@ var betaMessagesCountTokens = cli.Command{
 		&cli.StringFlag{
 			Name:   "messages.content.cache_control.type",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.cache_control.ttl",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.cache_control.ttl"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.encrypted_content",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.encrypted_content"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.title",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.title"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.type",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.url",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.url"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.page_age",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.page_age"),
+		},
+		&cli.BoolFlag{
+			Name:   "messages.content.+content",
+			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.-1", map[string]interface{}{}),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.error_code",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.error_code"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.tool_use_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.tool_use_id"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.content.file_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.content.#.file_id"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.content.type",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.content.#.type"),
+		},
+		&cli.BoolFlag{
+			Name:   "messages.content.content.+content",
+			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.content.-1", map[string]interface{}{}),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.return_code",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.return_code"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.stderr",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.stderr"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.stdout",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.stdout"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.server_name",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.server_name"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.text",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.text"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.cache_control.type",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.cache_control.ttl",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.cache_control.ttl"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.cited_text",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.cited_text"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.document_index",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.document_index"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.document_title",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.document_title"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.end_char_index",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_char_index"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.start_char_index",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_char_index"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.type",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.type"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.end_page_number",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_page_number"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.start_page_number",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_page_number"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.end_block_index",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_block_index"),
+		},
+		&cli.Int64Flag{
+			Name:   "messages.content.content.citations.start_block_index",
+			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_block_index"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.encrypted_index",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.encrypted_index"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.title",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.title"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.content.citations.url",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.url"),
+		},
+		&cli.BoolFlag{
+			Name:   "messages.content.content.+citation",
+			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.#.citations.-1", map[string]interface{}{}),
+		},
+		&cli.BoolFlag{
+			Name:   "messages.content.is_error",
+			Action: getAPIFlagAction[bool]("body", "messages.#.content.#.is_error"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.text",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.text"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.citations.cited_text",
@@ -655,108 +911,8 @@ var betaMessagesCountTokens = cli.Command{
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.url"),
 		},
 		&cli.StringFlag{
-			Name:   "messages.content.id",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.id"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.name",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.name"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.encrypted_content",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.encrypted_content"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.title",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.title"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.type",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.type"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.url",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.url"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.page_age",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.page_age"),
-		},
-		&cli.BoolFlag{
-			Name:   "messages.content.+content",
-			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.-1", map[string]interface{}{}),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.error_code",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.error_code"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.tool_use_id",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.tool_use_id"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.text",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.text"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.cache_control.type",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.cache_control.type"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.cited_text",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.cited_text"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.document_index",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.document_index"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.document_title",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.document_title"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.end_char_index",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_char_index"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.start_char_index",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_char_index"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.type",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.type"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.end_page_number",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_page_number"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.start_page_number",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_page_number"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.end_block_index",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.end_block_index"),
-		},
-		&cli.Int64Flag{
-			Name:   "messages.content.content.citations.start_block_index",
-			Action: getAPIFlagAction[int64]("body", "messages.#.content.#.content.#.citations.#.start_block_index"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.encrypted_index",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.encrypted_index"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.title",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.title"),
-		},
-		&cli.StringFlag{
-			Name:   "messages.content.content.citations.url",
-			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.citations.#.url"),
-		},
-		&cli.BoolFlag{
-			Name:   "messages.content.content.+citation",
-			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.content.#.citations.-1", map[string]interface{}{}),
+			Name:   "messages.content.source.file_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.file_id"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.content.source.data",
@@ -774,9 +930,9 @@ var betaMessagesCountTokens = cli.Command{
 			Name:   "messages.content.content.source.url",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.source.url"),
 		},
-		&cli.BoolFlag{
-			Name:   "messages.content.is_error",
-			Action: getAPIFlagAction[bool]("body", "messages.#.content.#.is_error"),
+		&cli.StringFlag{
+			Name:   "messages.content.content.source.file_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.content.#.source.file_id"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.source.content",
@@ -793,6 +949,10 @@ var betaMessagesCountTokens = cli.Command{
 		&cli.StringFlag{
 			Name:   "messages.content.source.content.cache_control.type",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.content.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "messages.content.source.content.cache_control.ttl",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.content.#.cache_control.ttl"),
 		},
 		&cli.StringFlag{
 			Name:   "messages.content.source.content.citations.cited_text",
@@ -866,6 +1026,10 @@ var betaMessagesCountTokens = cli.Command{
 			Name:   "messages.content.source.content.source.url",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.content.#.source.url"),
 		},
+		&cli.StringFlag{
+			Name:   "messages.content.source.content.source.file_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.source.content.#.source.file_id"),
+		},
 		&cli.BoolFlag{
 			Name:   "messages.content.source.+content",
 			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.#.source.content.-1", map[string]interface{}{}),
@@ -894,6 +1058,10 @@ var betaMessagesCountTokens = cli.Command{
 			Name:   "messages.content.data",
 			Action: getAPIFlagAction[string]("body", "messages.#.content.#.data"),
 		},
+		&cli.StringFlag{
+			Name:   "messages.content.file_id",
+			Action: getAPIFlagAction[string]("body", "messages.#.content.#.file_id"),
+		},
 		&cli.BoolFlag{
 			Name:   "messages.+content",
 			Action: getAPIFlagActionWithValue[bool]("body", "messages.#.content.-1", map[string]interface{}{}),
@@ -911,6 +1079,38 @@ var betaMessagesCountTokens = cli.Command{
 			Action: getAPIFlagAction[string]("body", "model"),
 		},
 		&cli.StringFlag{
+			Name:   "mcp-servers.name",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.name"),
+		},
+		&cli.StringFlag{
+			Name:   "mcp-servers.type",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.type"),
+		},
+		&cli.StringFlag{
+			Name:   "mcp-servers.url",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.url"),
+		},
+		&cli.StringFlag{
+			Name:   "mcp-servers.authorization_token",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.authorization_token"),
+		},
+		&cli.StringFlag{
+			Name:   "mcp-servers.tool_configuration.allowed_tools",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.tool_configuration.allowed_tools.#"),
+		},
+		&cli.StringFlag{
+			Name:   "mcp-servers.tool_configuration.+allowed_tool",
+			Action: getAPIFlagAction[string]("body", "mcp_servers.#.tool_configuration.allowed_tools.-1"),
+		},
+		&cli.BoolFlag{
+			Name:   "mcp-servers.tool_configuration.enabled",
+			Action: getAPIFlagAction[bool]("body", "mcp_servers.#.tool_configuration.enabled"),
+		},
+		&cli.BoolFlag{
+			Name:   "+mcp_server",
+			Action: getAPIFlagActionWithValue[bool]("body", "mcp_servers.-1", map[string]interface{}{}),
+		},
+		&cli.StringFlag{
 			Name:   "system",
 			Action: getAPIFlagAction[string]("body", "system"),
 		},
@@ -925,6 +1125,10 @@ var betaMessagesCountTokens = cli.Command{
 		&cli.StringFlag{
 			Name:   "system.cache_control.type",
 			Action: getAPIFlagAction[string]("body", "system.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "system.cache_control.ttl",
+			Action: getAPIFlagAction[string]("body", "system.#.cache_control.ttl"),
 		},
 		&cli.StringFlag{
 			Name:   "system.citations.cited_text",
@@ -1017,6 +1221,10 @@ var betaMessagesCountTokens = cli.Command{
 		&cli.StringFlag{
 			Name:   "tools.cache_control.type",
 			Action: getAPIFlagAction[string]("body", "tools.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "tools.cache_control.ttl",
+			Action: getAPIFlagAction[string]("body", "tools.#.cache_control.ttl"),
 		},
 		&cli.StringFlag{
 			Name:   "tools.description",

@@ -75,6 +75,16 @@ func main() {
 					&betaMessagesBatchesCancel,
 				},
 			},
+
+			{
+				Name: "beta:files",
+				Commands: []*cli.Command{
+					&betaFilesList,
+					&betaFilesDelete,
+					&betaFilesRetrieveMetadata,
+					&betaFilesUpload,
+				},
+			},
 		},
 		EnableShellCompletion: true,
 		HideHelpCommand:       true,

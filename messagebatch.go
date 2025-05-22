@@ -25,8 +25,12 @@ var messagesBatchesCreate = cli.Command{
 			Action: getAPIFlagAction[int64]("body", "requests.#.params.max_tokens"),
 		},
 		&cli.StringFlag{
-			Name:   "requests.params.messages.content.text",
-			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.text"),
+			Name:   "requests.params.messages.content.id",
+			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.id"),
+		},
+		&cli.StringFlag{
+			Name:   "requests.params.messages.content.name",
+			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.name"),
 		},
 		&cli.StringFlag{
 			Name:   "requests.params.messages.content.type",
@@ -35,6 +39,42 @@ var messagesBatchesCreate = cli.Command{
 		&cli.StringFlag{
 			Name:   "requests.params.messages.content.cache_control.type",
 			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.cache_control.type"),
+		},
+		&cli.StringFlag{
+			Name:   "requests.params.messages.content.content.encrypted_content",
+			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.#.encrypted_content"),
+		},
+		&cli.StringFlag{
+			Name:   "requests.params.messages.content.content.title",
+			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.#.title"),
+		},
+		&cli.StringFlag{
+			Name:   "requests.params.messages.content.content.type",
+			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.#.type"),
+		},
+		&cli.StringFlag{
+			Name:   "requests.params.messages.content.content.url",
+			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.#.url"),
+		},
+		&cli.StringFlag{
+			Name:   "requests.params.messages.content.content.page_age",
+			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.#.page_age"),
+		},
+		&cli.BoolFlag{
+			Name:   "requests.params.messages.content.+content",
+			Action: getAPIFlagActionWithValue[bool]("body", "requests.#.params.messages.#.content.#.content.-1", map[string]interface{}{}),
+		},
+		&cli.StringFlag{
+			Name:   "requests.params.messages.content.content.error_code",
+			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.error_code"),
+		},
+		&cli.StringFlag{
+			Name:   "requests.params.messages.content.tool_use_id",
+			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.tool_use_id"),
+		},
+		&cli.StringFlag{
+			Name:   "requests.params.messages.content.text",
+			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.text"),
 		},
 		&cli.StringFlag{
 			Name:   "requests.params.messages.content.citations.cited_text",
@@ -107,46 +147,6 @@ var messagesBatchesCreate = cli.Command{
 		&cli.StringFlag{
 			Name:   "requests.params.messages.content.source.url",
 			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.source.url"),
-		},
-		&cli.StringFlag{
-			Name:   "requests.params.messages.content.id",
-			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.id"),
-		},
-		&cli.StringFlag{
-			Name:   "requests.params.messages.content.name",
-			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.name"),
-		},
-		&cli.StringFlag{
-			Name:   "requests.params.messages.content.content.encrypted_content",
-			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.#.encrypted_content"),
-		},
-		&cli.StringFlag{
-			Name:   "requests.params.messages.content.content.title",
-			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.#.title"),
-		},
-		&cli.StringFlag{
-			Name:   "requests.params.messages.content.content.type",
-			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.#.type"),
-		},
-		&cli.StringFlag{
-			Name:   "requests.params.messages.content.content.url",
-			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.#.url"),
-		},
-		&cli.StringFlag{
-			Name:   "requests.params.messages.content.content.page_age",
-			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.#.page_age"),
-		},
-		&cli.BoolFlag{
-			Name:   "requests.params.messages.content.+content",
-			Action: getAPIFlagActionWithValue[bool]("body", "requests.#.params.messages.#.content.#.content.-1", map[string]interface{}{}),
-		},
-		&cli.StringFlag{
-			Name:   "requests.params.messages.content.content.error_code",
-			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.content.error_code"),
-		},
-		&cli.StringFlag{
-			Name:   "requests.params.messages.content.tool_use_id",
-			Action: getAPIFlagAction[string]("body", "requests.#.params.messages.#.content.#.tool_use_id"),
 		},
 		&cli.StringFlag{
 			Name:   "requests.params.messages.content.content.text",
@@ -367,6 +367,10 @@ var messagesBatchesCreate = cli.Command{
 		&cli.StringFlag{
 			Name:   "requests.params.metadata.user_id",
 			Action: getAPIFlagAction[string]("body", "requests.#.params.metadata.user_id"),
+		},
+		&cli.StringFlag{
+			Name:   "requests.params.service_tier",
+			Action: getAPIFlagAction[string]("body", "requests.#.params.service_tier"),
 		},
 		&cli.StringFlag{
 			Name:   "requests.params.stop_sequences",
