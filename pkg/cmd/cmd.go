@@ -11,6 +11,43 @@ var Command = cli.Command{
 	Usage: "CLI for the anthropic API",
 	Commands: []*cli.Command{
 		{
+			Name: "beta:files",
+			Commands: []*cli.Command{
+				&betaFilesList,
+				&betaFilesDelete,
+				&betaFilesRetrieveMetadata,
+				&betaFilesUpload,
+			},
+		},
+
+		{
+			Name: "beta:messages",
+			Commands: []*cli.Command{
+				&betaMessagesCreate,
+				&betaMessagesCountTokens,
+			},
+		},
+
+		{
+			Name: "beta:messages:batches",
+			Commands: []*cli.Command{
+				&betaMessagesBatchesCreate,
+				&betaMessagesBatchesRetrieve,
+				&betaMessagesBatchesList,
+				&betaMessagesBatchesDelete,
+				&betaMessagesBatchesCancel,
+			},
+		},
+
+		{
+			Name: "beta:models",
+			Commands: []*cli.Command{
+				&betaModelsRetrieve,
+				&betaModelsList,
+			},
+		},
+
+		{
 			Name: "completions",
 			Commands: []*cli.Command{
 				&completionsCreate,
@@ -41,43 +78,6 @@ var Command = cli.Command{
 			Commands: []*cli.Command{
 				&modelsRetrieve,
 				&modelsList,
-			},
-		},
-
-		{
-			Name: "beta:models",
-			Commands: []*cli.Command{
-				&betaModelsRetrieve,
-				&betaModelsList,
-			},
-		},
-
-		{
-			Name: "beta:messages",
-			Commands: []*cli.Command{
-				&betaMessagesCreate,
-				&betaMessagesCountTokens,
-			},
-		},
-
-		{
-			Name: "beta:messages:batches",
-			Commands: []*cli.Command{
-				&betaMessagesBatchesCreate,
-				&betaMessagesBatchesRetrieve,
-				&betaMessagesBatchesList,
-				&betaMessagesBatchesDelete,
-				&betaMessagesBatchesCancel,
-			},
-		},
-
-		{
-			Name: "beta:files",
-			Commands: []*cli.Command{
-				&betaFilesList,
-				&betaFilesDelete,
-				&betaFilesRetrieveMetadata,
-				&betaFilesUpload,
 			},
 		},
 	},
