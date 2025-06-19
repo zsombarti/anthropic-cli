@@ -299,8 +299,9 @@ var betaMessagesCreate = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "messages.content.is_error",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "messages.#.content.#.is_error",
+				Kind:     jsonflag.Body,
+				Path:     "messages.#.content.#.is_error",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONStringFlag{
@@ -662,8 +663,9 @@ var betaMessagesCreate = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "messages.content.citations.enabled",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "messages.#.content.#.citations.enabled",
+				Kind:     jsonflag.Body,
+				Path:     "messages.#.content.#.citations.enabled",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONStringFlag{
@@ -792,8 +794,9 @@ var betaMessagesCreate = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "mcp-servers.tool_configuration.enabled",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "mcp_servers.#.tool_configuration.enabled",
+				Kind:     jsonflag.Body,
+				Path:     "mcp_servers.#.tool_configuration.enabled",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONAnyFlag{
@@ -1001,8 +1004,9 @@ var betaMessagesCreate = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "tool-choice.disable_parallel_tool_use",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "tool_choice.disable_parallel_tool_use",
+				Kind:     jsonflag.Body,
+				Path:     "tool_choice.disable_parallel_tool_use",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONStringFlag{
@@ -1480,8 +1484,9 @@ var betaMessagesCountTokens = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "messages.content.is_error",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "messages.#.content.#.is_error",
+				Kind:     jsonflag.Body,
+				Path:     "messages.#.content.#.is_error",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONStringFlag{
@@ -1843,8 +1848,9 @@ var betaMessagesCountTokens = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "messages.content.citations.enabled",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "messages.#.content.#.citations.enabled",
+				Kind:     jsonflag.Body,
+				Path:     "messages.#.content.#.citations.enabled",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONStringFlag{
@@ -1966,8 +1972,9 @@ var betaMessagesCountTokens = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "mcp-servers.tool_configuration.enabled",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "mcp_servers.#.tool_configuration.enabled",
+				Kind:     jsonflag.Body,
+				Path:     "mcp_servers.#.tool_configuration.enabled",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONAnyFlag{
@@ -2147,8 +2154,9 @@ var betaMessagesCountTokens = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "tool-choice.disable_parallel_tool_use",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "tool_choice.disable_parallel_tool_use",
+				Kind:     jsonflag.Body,
+				Path:     "tool_choice.disable_parallel_tool_use",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONStringFlag{

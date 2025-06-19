@@ -306,8 +306,9 @@ var betaMessagesBatchesCreate = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "requests.params.messages.content.is_error",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "requests.#.params.messages.#.content.#.is_error",
+				Kind:     jsonflag.Body,
+				Path:     "requests.#.params.messages.#.content.#.is_error",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONStringFlag{
@@ -669,8 +670,9 @@ var betaMessagesBatchesCreate = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "requests.params.messages.content.citations.enabled",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "requests.#.params.messages.#.content.#.citations.enabled",
+				Kind:     jsonflag.Body,
+				Path:     "requests.#.params.messages.#.content.#.citations.enabled",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONStringFlag{
@@ -799,8 +801,9 @@ var betaMessagesBatchesCreate = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "requests.params.mcp_servers.tool_configuration.enabled",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "requests.#.params.mcp_servers.#.tool_configuration.enabled",
+				Kind:     jsonflag.Body,
+				Path:     "requests.#.params.mcp_servers.#.tool_configuration.enabled",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONAnyFlag{
@@ -843,8 +846,9 @@ var betaMessagesBatchesCreate = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "requests.params.stream",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "requests.#.params.stream",
+				Kind:     jsonflag.Body,
+				Path:     "requests.#.params.stream",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONStringFlag{
@@ -1015,8 +1019,9 @@ var betaMessagesBatchesCreate = cli.Command{
 		&jsonflag.JSONBoolFlag{
 			Name: "requests.params.tool_choice.disable_parallel_tool_use",
 			Config: jsonflag.JSONConfig{
-				Kind: jsonflag.Body,
-				Path: "requests.#.params.tool_choice.disable_parallel_tool_use",
+				Kind:     jsonflag.Body,
+				Path:     "requests.#.params.tool_choice.disable_parallel_tool_use",
+				SetValue: true,
 			},
 		},
 		&jsonflag.JSONStringFlag{
