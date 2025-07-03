@@ -25,7 +25,7 @@ anthropic-cli messages create \
   --messages.content.name web_search \
   --messages.content.type server_tool_use \
   --messages.role user \
-  --model claude-3-5-sonnet-latest
+  --model claude-sonnet-4-20250514
 ```
 
 For details about specific commands, use the `--help` flag.
