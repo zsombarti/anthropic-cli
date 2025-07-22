@@ -22,14 +22,16 @@ var Command = cli.Command{
 	},
 	Commands: []*cli.Command{
 		{
-			Name: "completions",
+			Name:     "completions",
+			Category: "API RESOURCE",
 			Commands: []*cli.Command{
 				&completionsCreate,
 			},
 		},
 
 		{
-			Name: "messages",
+			Name:     "messages",
+			Category: "API RESOURCE",
 			Commands: []*cli.Command{
 				&messagesCreate,
 				&messagesCountTokens,
@@ -37,7 +39,8 @@ var Command = cli.Command{
 		},
 
 		{
-			Name: "messages:batches",
+			Name:     "messages:batches",
+			Category: "API RESOURCE",
 			Commands: []*cli.Command{
 				&messagesBatchesCreate,
 				&messagesBatchesRetrieve,
@@ -48,7 +51,8 @@ var Command = cli.Command{
 		},
 
 		{
-			Name: "models",
+			Name:     "models",
+			Category: "API RESOURCE",
 			Commands: []*cli.Command{
 				&modelsRetrieve,
 				&modelsList,
@@ -56,7 +60,8 @@ var Command = cli.Command{
 		},
 
 		{
-			Name: "beta:models",
+			Name:     "beta:models",
+			Category: "API RESOURCE",
 			Commands: []*cli.Command{
 				&betaModelsRetrieve,
 				&betaModelsList,
@@ -64,7 +69,8 @@ var Command = cli.Command{
 		},
 
 		{
-			Name: "beta:messages",
+			Name:     "beta:messages",
+			Category: "API RESOURCE",
 			Commands: []*cli.Command{
 				&betaMessagesCreate,
 				&betaMessagesCountTokens,
@@ -72,7 +78,8 @@ var Command = cli.Command{
 		},
 
 		{
-			Name: "beta:messages:batches",
+			Name:     "beta:messages:batches",
+			Category: "API RESOURCE",
 			Commands: []*cli.Command{
 				&betaMessagesBatchesCreate,
 				&betaMessagesBatchesRetrieve,
@@ -83,7 +90,8 @@ var Command = cli.Command{
 		},
 
 		{
-			Name: "beta:files",
+			Name:     "beta:files",
+			Category: "API RESOURCE",
 			Commands: []*cli.Command{
 				&betaFilesList,
 				&betaFilesDelete,
