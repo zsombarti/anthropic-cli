@@ -3,103 +3,180 @@
 package cmd
 
 import (
+	"compress/gzip"
+	"context"
+	"fmt"
+	"os"
+	"path/filepath"
+
+	docs "github.com/urfave/cli-docs/v3"
 	"github.com/urfave/cli/v3"
 )
 
-var Command = cli.Command{
-	Name:    "anthropic-cli",
-	Usage:   "CLI for the anthropic API",
-	Version: Version,
-	Flags: []cli.Flag{
-		&cli.BoolFlag{
-			Name:  "debug",
-			Usage: "Enable debug logging",
-		},
-		&cli.StringFlag{
-			Name:  "base-url",
-			Usage: "Override the base URL for API requests",
-		},
-	},
-	Commands: []*cli.Command{
-		{
-			Name:     "completions",
-			Category: "API RESOURCE",
-			Commands: []*cli.Command{
-				&completionsCreate,
-			},
-		},
+var Command *cli.Command
 
-		{
-			Name:     "messages",
-			Category: "API RESOURCE",
-			Commands: []*cli.Command{
-				&messagesCreate,
-				&messagesCountTokens,
+func init() {
+	Command = &cli.Command{
+		Name:    "anthropic-cli",
+		Usage:   "CLI for the anthropic API",
+		Version: Version,
+		Flags: []cli.Flag{
+			&cli.BoolFlag{
+				Name:  "debug",
+				Usage: "Enable debug logging",
+			},
+			&cli.StringFlag{
+				Name:  "base-url",
+				Usage: "Override the base URL for API requests",
 			},
 		},
+		Commands: []*cli.Command{
+			{
+				Name:     "completions",
+				Category: "API RESOURCE",
+				Commands: []*cli.Command{
+					&completionsCreate,
+				},
+			},
 
-		{
-			Name:     "messages:batches",
-			Category: "API RESOURCE",
-			Commands: []*cli.Command{
-				&messagesBatchesCreate,
-				&messagesBatchesRetrieve,
-				&messagesBatchesList,
-				&messagesBatchesDelete,
-				&messagesBatchesCancel,
+			{
+				Name:     "messages",
+				Category: "API RESOURCE",
+				Commands: []*cli.Command{
+					&messagesCreate,
+					&messagesCountTokens,
+				},
 			},
-		},
 
-		{
-			Name:     "models",
-			Category: "API RESOURCE",
-			Commands: []*cli.Command{
-				&modelsRetrieve,
-				&modelsList,
+			{
+				Name:     "messages:batches",
+				Category: "API RESOURCE",
+				Commands: []*cli.Command{
+					&messagesBatchesCreate,
+					&messagesBatchesRetrieve,
+					&messagesBatchesList,
+					&messagesBatchesDelete,
+					&messagesBatchesCancel,
+				},
 			},
-		},
 
-		{
-			Name:     "beta:models",
-			Category: "API RESOURCE",
-			Commands: []*cli.Command{
-				&betaModelsRetrieve,
-				&betaModelsList,
+			{
+				Name:     "models",
+				Category: "API RESOURCE",
+				Commands: []*cli.Command{
+					&modelsRetrieve,
+					&modelsList,
+				},
 			},
-		},
 
-		{
-			Name:     "beta:messages",
-			Category: "API RESOURCE",
-			Commands: []*cli.Command{
-				&betaMessagesCreate,
-				&betaMessagesCountTokens,
+			{
+				Name:     "beta:models",
+				Category: "API RESOURCE",
+				Commands: []*cli.Command{
+					&betaModelsRetrieve,
+					&betaModelsList,
+				},
 			},
-		},
 
-		{
-			Name:     "beta:messages:batches",
-			Category: "API RESOURCE",
-			Commands: []*cli.Command{
-				&betaMessagesBatchesCreate,
-				&betaMessagesBatchesRetrieve,
-				&betaMessagesBatchesList,
-				&betaMessagesBatchesDelete,
-				&betaMessagesBatchesCancel,
+			{
+				Name:     "beta:messages",
+				Category: "API RESOURCE",
+				Commands: []*cli.Command{
+					&betaMessagesCreate,
+					&betaMessagesCountTokens,
+				},
 			},
-		},
 
-		{
-			Name:     "beta:files",
-			Category: "API RESOURCE",
-			Commands: []*cli.Command{
-				&betaFilesList,
-				&betaFilesDelete,
-				&betaFilesRetrieveMetadata,
-				&betaFilesUpload,
+			{
+				Name:     "beta:messages:batches",
+				Category: "API RESOURCE",
+				Commands: []*cli.Command{
+					&betaMessagesBatchesCreate,
+					&betaMessagesBatchesRetrieve,
+					&betaMessagesBatchesList,
+					&betaMessagesBatchesDelete,
+					&betaMessagesBatchesCancel,
+				},
+			},
+
+			{
+				Name:     "beta:files",
+				Category: "API RESOURCE",
+				Commands: []*cli.Command{
+					&betaFilesList,
+					&betaFilesDelete,
+					&betaFilesRetrieveMetadata,
+					&betaFilesUpload,
+				},
+			},
+			{
+				Name:            "@manpages",
+				Usage:           "Generate documentation for 'man'",
+				UsageText:       "anthropic-cli @manpages [-o anthropic-cli.1] [--gzip]",
+				Hidden:          true,
+				Action:          generateManpages,
+				HideHelpCommand: true,
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:    "output",
+						Aliases: []string{"o"},
+						Usage:   "write manpages to the given folder",
+						Value:   "man",
+					},
+					&cli.BoolFlag{
+						Name:    "gzip",
+						Aliases: []string{"z"},
+						Usage:   "output gzipped manpage files to .gz",
+						Value:   true,
+					},
+					&cli.BoolFlag{
+						Name:    "text",
+						Aliases: []string{"z"},
+						Usage:   "output uncompressed text files",
+						Value:   false,
+					},
+				},
 			},
 		},
-	},
-	EnableShellCompletion: true,
-	HideHelpCommand:       true,
+		EnableShellCompletion:      true,
+		ShellCompletionCommandName: "@completion",
+		HideHelpCommand:            true,
+	}
+}
+
+func generateManpages(ctx context.Context, c *cli.Command) error {
+	manpage, err := docs.ToManWithSection(Command, 1)
+	if err != nil {
+		return err
+	}
+	dir := c.String("output")
+	err = os.MkdirAll(filepath.Join(dir, "man1"), 0755)
+	if err != nil {
+		// handle error
+	}
+	if c.Bool("text") {
+		file, err := os.Create(filepath.Join(dir, "man1", "anthropic-cli.1"))
+		if err != nil {
+			return err
+		}
+		defer file.Close()
+		if _, err := file.WriteString(manpage); err != nil {
+			return err
+		}
+	}
+	if c.Bool("gzip") {
+		file, err := os.Create(filepath.Join(dir, "man1", "anthropic-cli.1.gz"))
+		if err != nil {
+			return err
+		}
+		defer file.Close()
+		gzWriter := gzip.NewWriter(file)
+		defer gzWriter.Close()
+		_, err = gzWriter.Write([]byte(manpage))
+		if err != nil {
+			return err
+		}
+	}
+	fmt.Printf("Wrote manpages to %s\n", dir)
+	return nil
 }

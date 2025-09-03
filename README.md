@@ -10,6 +10,12 @@ The official CLI for the [Anthropic REST API](https://docs.anthropic.com/claude/
 go install 'github.com/stainless-sdks/anthropic-cli/cmd/anthropic-cli@latest'
 ```
 
+### Running Locally
+
+```sh
+go run cmd/anthropic-cli/main.go
+```
+
 ## Usage
 
 The CLI follows a resource-based command structure:
