@@ -9,6 +9,7 @@ import (
 	"github.com/anthropics/anthropic-sdk-go"
 	"github.com/anthropics/anthropic-sdk-go/option"
 	"github.com/stainless-sdks/anthropic-cli/pkg/jsonflag"
+	"github.com/tidwall/gjson"
 	"github.com/urfave/cli/v3"
 )
 
@@ -2791,6 +2792,10 @@ var messagesCountTokens = cli.Command{
 
 func handleMessagesCreate(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.MessageNewParams{}
 	stream := cc.client.Messages.NewStreaming(
 		context.TODO(),
@@ -2805,6 +2810,10 @@ func handleMessagesCreate(ctx context.Context, cmd *cli.Command) error {
 
 func handleMessagesCountTokens(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.MessageCountTokensParams{}
 	var res []byte
 	_, err := cc.client.Messages.CountTokens(
@@ -2817,6 +2826,8 @@ func handleMessagesCountTokens(ctx context.Context, cmd *cli.Command) error {
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("messages count-tokens", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("messages count-tokens", json, format, transform)
 }

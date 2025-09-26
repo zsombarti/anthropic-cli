@@ -9,6 +9,7 @@ import (
 	"github.com/anthropics/anthropic-sdk-go"
 	"github.com/anthropics/anthropic-sdk-go/option"
 	"github.com/stainless-sdks/anthropic-cli/pkg/jsonflag"
+	"github.com/tidwall/gjson"
 	"github.com/urfave/cli/v3"
 )
 
@@ -3910,6 +3911,10 @@ var betaMessagesCountTokens = cli.Command{
 
 func handleBetaMessagesCreate(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaMessageNewParams{}
 	stream := cc.client.Beta.Messages.NewStreaming(
 		context.TODO(),
@@ -3924,6 +3929,10 @@ func handleBetaMessagesCreate(ctx context.Context, cmd *cli.Command) error {
 
 func handleBetaMessagesCountTokens(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaMessageCountTokensParams{}
 	var res []byte
 	_, err := cc.client.Beta.Messages.CountTokens(
@@ -3936,6 +3945,8 @@ func handleBetaMessagesCountTokens(ctx context.Context, cmd *cli.Command) error 
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("beta:messages count-tokens", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("beta:messages count-tokens", json, format, transform)
 }

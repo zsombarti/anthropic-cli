@@ -4,10 +4,12 @@ package cmd
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/anthropics/anthropic-sdk-go"
 	"github.com/anthropics/anthropic-sdk-go/option"
 	"github.com/stainless-sdks/anthropic-cli/pkg/jsonflag"
+	"github.com/tidwall/gjson"
 	"github.com/urfave/cli/v3"
 )
 
@@ -165,6 +167,10 @@ var betaFilesUpload = cli.Command{
 
 func handleBetaFilesList(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaFileListParams{}
 	var res []byte
 	_, err := cc.client.Beta.Files.List(
@@ -177,12 +183,22 @@ func handleBetaFilesList(ctx context.Context, cmd *cli.Command) error {
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("beta:files list", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("beta:files list", json, format, transform)
 }
 
 func handleBetaFilesDelete(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("file-id") && len(unusedArgs) > 0 {
+		cmd.Set("file-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaFileDeleteParams{}
 	var res []byte
 	_, err := cc.client.Beta.Files.Delete(
@@ -196,12 +212,22 @@ func handleBetaFilesDelete(ctx context.Context, cmd *cli.Command) error {
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("beta:files delete", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("beta:files delete", json, format, transform)
 }
 
 func handleBetaFilesDownload(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("file-id") && len(unusedArgs) > 0 {
+		cmd.Set("file-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaFileDownloadParams{}
 	var res []byte
 	_, err := cc.client.Beta.Files.Download(
@@ -215,12 +241,22 @@ func handleBetaFilesDownload(ctx context.Context, cmd *cli.Command) error {
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("beta:files download", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("beta:files download", json, format, transform)
 }
 
 func handleBetaFilesRetrieveMetadata(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("file-id") && len(unusedArgs) > 0 {
+		cmd.Set("file-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaFileGetMetadataParams{}
 	var res []byte
 	_, err := cc.client.Beta.Files.GetMetadata(
@@ -234,12 +270,18 @@ func handleBetaFilesRetrieveMetadata(ctx context.Context, cmd *cli.Command) erro
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("beta:files retrieve-metadata", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("beta:files retrieve-metadata", json, format, transform)
 }
 
 func handleBetaFilesUpload(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaFileUploadParams{}
 	var res []byte
 	_, err := cc.client.Beta.Files.Upload(
@@ -252,6 +294,8 @@ func handleBetaFilesUpload(ctx context.Context, cmd *cli.Command) error {
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("beta:files upload", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("beta:files upload", json, format, transform)
 }

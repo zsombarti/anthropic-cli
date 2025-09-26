@@ -9,6 +9,7 @@ import (
 	"github.com/anthropics/anthropic-sdk-go"
 	"github.com/anthropics/anthropic-sdk-go/option"
 	"github.com/stainless-sdks/anthropic-cli/pkg/jsonflag"
+	"github.com/tidwall/gjson"
 	"github.com/urfave/cli/v3"
 )
 
@@ -2162,6 +2163,10 @@ var betaMessagesBatchesResults = cli.Command{
 
 func handleBetaMessagesBatchesCreate(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaMessageBatchNewParams{}
 	var res []byte
 	_, err := cc.client.Beta.Messages.Batches.New(
@@ -2174,12 +2179,22 @@ func handleBetaMessagesBatchesCreate(ctx context.Context, cmd *cli.Command) erro
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("beta:messages:batches create", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("beta:messages:batches create", json, format, transform)
 }
 
 func handleBetaMessagesBatchesRetrieve(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("message-batch-id") && len(unusedArgs) > 0 {
+		cmd.Set("message-batch-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaMessageBatchGetParams{}
 	var res []byte
 	_, err := cc.client.Beta.Messages.Batches.Get(
@@ -2193,12 +2208,18 @@ func handleBetaMessagesBatchesRetrieve(ctx context.Context, cmd *cli.Command) er
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("beta:messages:batches retrieve", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("beta:messages:batches retrieve", json, format, transform)
 }
 
 func handleBetaMessagesBatchesList(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaMessageBatchListParams{}
 	var res []byte
 	_, err := cc.client.Beta.Messages.Batches.List(
@@ -2211,12 +2232,22 @@ func handleBetaMessagesBatchesList(ctx context.Context, cmd *cli.Command) error 
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("beta:messages:batches list", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("beta:messages:batches list", json, format, transform)
 }
 
 func handleBetaMessagesBatchesDelete(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("message-batch-id") && len(unusedArgs) > 0 {
+		cmd.Set("message-batch-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaMessageBatchDeleteParams{}
 	var res []byte
 	_, err := cc.client.Beta.Messages.Batches.Delete(
@@ -2230,12 +2261,22 @@ func handleBetaMessagesBatchesDelete(ctx context.Context, cmd *cli.Command) erro
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("beta:messages:batches delete", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("beta:messages:batches delete", json, format, transform)
 }
 
 func handleBetaMessagesBatchesCancel(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("message-batch-id") && len(unusedArgs) > 0 {
+		cmd.Set("message-batch-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaMessageBatchCancelParams{}
 	var res []byte
 	_, err := cc.client.Beta.Messages.Batches.Cancel(
@@ -2249,12 +2290,22 @@ func handleBetaMessagesBatchesCancel(ctx context.Context, cmd *cli.Command) erro
 		return err
 	}
 
+	json := gjson.Parse(string(res))
 	format := cmd.Root().String("format")
-	return ShowJSON("beta:messages:batches cancel", string(res), format)
+	transform := cmd.Root().String("transform")
+	return ShowJSON("beta:messages:batches cancel", json, format, transform)
 }
 
 func handleBetaMessagesBatchesResults(ctx context.Context, cmd *cli.Command) error {
 	cc := getAPICommandContext(cmd)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("message-batch-id") && len(unusedArgs) > 0 {
+		cmd.Set("message-batch-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
 	params := anthropic.BetaMessageBatchResultsParams{}
 	stream := cc.client.Beta.Messages.Batches.ResultsStreaming(
 		context.TODO(),
