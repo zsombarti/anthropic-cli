@@ -30,7 +30,7 @@ anthropic-cli messages create \
   --messages.content.text x \
   --messages.content.type text \
   --messages.role user \
-  --model claude-sonnet-4-20250514
+  --model claude-sonnet-4-5-20250929
 ```
 
 For details about specific commands, use the `--help` flag.

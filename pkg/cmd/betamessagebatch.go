@@ -1505,6 +1505,93 @@ var betaMessagesBatchesCreate = cli.Command{
 			},
 		},
 		&jsonflag.JSONStringFlag{
+			Name: "requests.params.context_management.edits.type",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.context_management.edits.#.type",
+			},
+		},
+		&jsonflag.JSONStringFlag{
+			Name: "requests.params.context_management.edits.clear_at_least.type",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.context_management.edits.#.clear_at_least.type",
+			},
+		},
+		&jsonflag.JSONIntFlag{
+			Name: "requests.params.context_management.edits.clear_at_least.value",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.context_management.edits.#.clear_at_least.value",
+			},
+		},
+		&jsonflag.JSONBoolFlag{
+			Name: "requests.params.context_management.edits.clear_tool_inputs",
+			Config: jsonflag.JSONConfig{
+				Kind:     jsonflag.Body,
+				Path:     "requests.#.params.context_management.edits.#.clear_tool_inputs",
+				SetValue: true,
+			},
+		},
+		&jsonflag.JSONStringFlag{
+			Name: "requests.params.context_management.edits.+clear_tool_input",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.context_management.edits.#.clear_tool_inputs.-1",
+			},
+		},
+		&jsonflag.JSONStringFlag{
+			Name: "requests.params.context_management.edits.exclude_tools",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.context_management.edits.#.exclude_tools.#",
+			},
+		},
+		&jsonflag.JSONStringFlag{
+			Name: "requests.params.context_management.edits.+exclude_tool",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.context_management.edits.#.exclude_tools.-1",
+			},
+		},
+		&jsonflag.JSONStringFlag{
+			Name: "requests.params.context_management.edits.keep.type",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.context_management.edits.#.keep.type",
+			},
+		},
+		&jsonflag.JSONIntFlag{
+			Name: "requests.params.context_management.edits.keep.value",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.context_management.edits.#.keep.value",
+			},
+		},
+		&jsonflag.JSONStringFlag{
+			Name: "requests.params.context_management.edits.trigger.type",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.context_management.edits.#.trigger.type",
+			},
+		},
+		&jsonflag.JSONIntFlag{
+			Name: "requests.params.context_management.edits.trigger.value",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.context_management.edits.#.trigger.value",
+			},
+		},
+		&jsonflag.JSONAnyFlag{
+			Name: "requests.params.context_management.+edit",
+			Config: jsonflag.JSONConfig{
+				Kind:     jsonflag.Body,
+				Path:     "requests.#.params.context_management.edits.-1",
+				SetValue: map[string]interface{}{},
+			},
+			Value: map[string]interface{}{},
+		},
+		&jsonflag.JSONStringFlag{
 			Name: "requests.params.mcp_servers.name",
 			Config: jsonflag.JSONConfig{
 				Kind: jsonflag.Body,
