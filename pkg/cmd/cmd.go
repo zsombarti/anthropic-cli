@@ -139,6 +139,26 @@ func init() {
 				},
 			},
 			{
+				Name:     "beta:skills",
+				Category: "API RESOURCE",
+				Commands: []*cli.Command{
+					&betaSkillsCreate,
+					&betaSkillsRetrieve,
+					&betaSkillsList,
+					&betaSkillsDelete,
+				},
+			},
+			{
+				Name:     "beta:skills:versions",
+				Category: "API RESOURCE",
+				Commands: []*cli.Command{
+					&betaSkillsVersionsCreate,
+					&betaSkillsVersionsRetrieve,
+					&betaSkillsVersionsList,
+					&betaSkillsVersionsDelete,
+				},
+			},
+			{
 				Name:            "@manpages",
 				Usage:           "Generate documentation for 'man'",
 				UsageText:       "anthropic-cli @manpages [-o anthropic-cli.1] [--gzip]",

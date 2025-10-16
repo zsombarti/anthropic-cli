@@ -1692,6 +1692,47 @@ var betaMessagesBatchesCreate = cli.Command{
 			},
 		},
 		&jsonflag.JSONStringFlag{
+			Name:  "requests.params.container.id",
+			Usage: "List of requests for prompt completion. Each is an individual request to create a Message.",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.container.id",
+			},
+		},
+		&jsonflag.JSONStringFlag{
+			Name:  "requests.params.container.skills.skill_id",
+			Usage: "List of requests for prompt completion. Each is an individual request to create a Message.",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.container.skills.#.skill_id",
+			},
+		},
+		&jsonflag.JSONStringFlag{
+			Name:  "requests.params.container.skills.type",
+			Usage: "List of requests for prompt completion. Each is an individual request to create a Message.",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.container.skills.#.type",
+			},
+		},
+		&jsonflag.JSONStringFlag{
+			Name:  "requests.params.container.skills.version",
+			Usage: "List of requests for prompt completion. Each is an individual request to create a Message.",
+			Config: jsonflag.JSONConfig{
+				Kind: jsonflag.Body,
+				Path: "requests.#.params.container.skills.#.version",
+			},
+		},
+		&jsonflag.JSONAnyFlag{
+			Name:  "requests.params.container.+skill",
+			Usage: "List of requests for prompt completion. Each is an individual request to create a Message.",
+			Config: jsonflag.JSONConfig{
+				Kind:     jsonflag.Body,
+				Path:     "requests.#.params.container.skills.-1",
+				SetValue: map[string]interface{}{},
+			},
+		},
+		&jsonflag.JSONStringFlag{
 			Name:  "requests.params.container",
 			Usage: "List of requests for prompt completion. Each is an individual request to create a Message.",
 			Config: jsonflag.JSONConfig{
