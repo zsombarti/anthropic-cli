@@ -13,7 +13,7 @@ import (
 	"syscall"
 
 	"github.com/anthropics/anthropic-sdk-go/option"
-	"github.com/stainless-sdks/anthropic-cli/pkg/jsonview"
+	"github.com/stainless-sdks/anthropic-cli/internal/jsonview"
 
 	"github.com/itchyny/json2yaml"
 	"github.com/tidwall/gjson"
