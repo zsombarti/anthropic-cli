@@ -20,7 +20,7 @@ var messagesBatchesCreate = cli.Command{
 	Name:  "create",
 	Usage: "Send a batch of Message creation requests.",
 	Flags: []cli.Flag{
-		&requestflag.Flag[[]any]{
+		&requestflag.Flag[[]map[string]any]{
 			Name:     "request",
 			Usage:    "List of requests for prompt completion. Each is an individual request to create a Message.",
 			BodyPath: "requests",
