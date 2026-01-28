@@ -58,7 +58,7 @@ func TestMessagesCountTokens(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"messages", "count-tokens",
-		"--message", "{content: [{text: What is a quaternion?, type: text, cache_control: {type: ephemeral, ttl: 5m}, citations: [{cited_text: cited_text, document_index: 0, document_title: x, end_char_index: 0, start_char_index: 0, type: char_location}]}], role: user}",
+		"--message", "{content: [{text: x, type: text, cache_control: {type: ephemeral, ttl: 5m}, citations: [{cited_text: cited_text, document_index: 0, document_title: x, end_char_index: 0, start_char_index: 0, type: char_location}]}], role: user}",
 		"--model", "claude-opus-4-5-20251101",
 		"--system", "[{text: Today's date is 2024-06-01., type: text, cache_control: {type: ephemeral, ttl: 5m}, citations: [{cited_text: cited_text, document_index: 0, document_title: x, end_char_index: 0, start_char_index: 0, type: char_location}]}]",
 		"--thinking", "{budget_tokens: 1024, type: enabled}",
@@ -73,7 +73,7 @@ func TestMessagesCountTokens(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"messages", "count-tokens",
-		"--message.content", "[{text: What is a quaternion?, type: text, cache_control: {type: ephemeral, ttl: 5m}, citations: [{cited_text: cited_text, document_index: 0, document_title: x, end_char_index: 0, start_char_index: 0, type: char_location}]}]",
+		"--message.content", "[{text: x, type: text, cache_control: {type: ephemeral, ttl: 5m}, citations: [{cited_text: cited_text, document_index: 0, document_title: x, end_char_index: 0, start_char_index: 0, type: char_location}]}]",
 		"--message.role", "user",
 		"--model", "claude-opus-4-5-20251101",
 		"--system", "[{text: Today's date is 2024-06-01., type: text, cache_control: {type: ephemeral, ttl: 5m}, citations: [{cited_text: cited_text, document_index: 0, document_title: x, end_char_index: 0, start_char_index: 0, type: char_location}]}]",

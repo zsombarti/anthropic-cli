@@ -15,7 +15,7 @@ func TestBetaFilesList(t *testing.T) {
 		"--after-id", "after_id",
 		"--before-id", "before_id",
 		"--limit", "1",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
 
@@ -24,7 +24,7 @@ func TestBetaFilesDelete(t *testing.T) {
 		t,
 		"beta:files", "delete",
 		"--file-id", "file_id",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
 
@@ -33,7 +33,7 @@ func TestBetaFilesRetrieveMetadata(t *testing.T) {
 		t,
 		"beta:files", "retrieve-metadata",
 		"--file-id", "file_id",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
 
@@ -42,6 +42,6 @@ func TestBetaFilesUpload(t *testing.T) {
 		t,
 		"beta:files", "upload",
 		"--file", "",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }

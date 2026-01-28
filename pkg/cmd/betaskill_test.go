@@ -15,7 +15,7 @@ func TestBetaSkillsCreate(t *testing.T) {
 		"beta:skills", "create",
 		"--display-title", "display_title",
 		"--file", "",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
 
@@ -24,7 +24,7 @@ func TestBetaSkillsRetrieve(t *testing.T) {
 		t,
 		"beta:skills", "retrieve",
 		"--skill-id", "skill_id",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
 
@@ -35,7 +35,7 @@ func TestBetaSkillsList(t *testing.T) {
 		"--limit", "0",
 		"--page", "page",
 		"--source", "source",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
 
@@ -44,6 +44,6 @@ func TestBetaSkillsDelete(t *testing.T) {
 		t,
 		"beta:skills", "delete",
 		"--skill-id", "skill_id",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }

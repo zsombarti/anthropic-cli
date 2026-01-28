@@ -13,7 +13,7 @@ func TestModelsRetrieve(t *testing.T) {
 		t,
 		"models", "retrieve",
 		"--model-id", "model_id",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
 
@@ -24,6 +24,6 @@ func TestModelsList(t *testing.T) {
 		"--after-id", "after_id",
 		"--before-id", "before_id",
 		"--limit", "1",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }

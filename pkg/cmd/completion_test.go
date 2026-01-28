@@ -22,7 +22,7 @@ func TestCompletionsCreate(t *testing.T) {
 		"--temperature", "1",
 		"--top-k", "5",
 		"--top-p", "0.7",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 
 	// Check that inner flags have been set up correctly
@@ -41,6 +41,6 @@ func TestCompletionsCreate(t *testing.T) {
 		"--temperature", "1",
 		"--top-k", "5",
 		"--top-p", "0.7",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }

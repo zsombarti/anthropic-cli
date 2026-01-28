@@ -15,7 +15,7 @@ func TestBetaSkillsVersionsCreate(t *testing.T) {
 		"beta:skills:versions", "create",
 		"--skill-id", "skill_id",
 		"--file", "",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
 
@@ -25,7 +25,7 @@ func TestBetaSkillsVersionsRetrieve(t *testing.T) {
 		"beta:skills:versions", "retrieve",
 		"--skill-id", "skill_id",
 		"--version", "version",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
 
@@ -36,7 +36,7 @@ func TestBetaSkillsVersionsList(t *testing.T) {
 		"--skill-id", "skill_id",
 		"--limit", "0",
 		"--page", "page",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
 
@@ -46,6 +46,6 @@ func TestBetaSkillsVersionsDelete(t *testing.T) {
 		"beta:skills:versions", "delete",
 		"--skill-id", "skill_id",
 		"--version", "version",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }

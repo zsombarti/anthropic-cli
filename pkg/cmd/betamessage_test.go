@@ -33,7 +33,7 @@ func TestBetaMessagesCreate(t *testing.T) {
 		"--tool", "{input_schema: {type: object, properties: {location: bar, unit: bar}, required: [location]}, name: name, allowed_callers: [direct], cache_control: {type: ephemeral, ttl: 5m}, defer_loading: true, description: Get the current weather in a given location, input_examples: [{foo: bar}], strict: true, type: custom}",
 		"--top-k", "5",
 		"--top-p", "0.7",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 
 	// Check that inner flags have been set up correctly
@@ -69,7 +69,7 @@ func TestBetaMessagesCreate(t *testing.T) {
 		"--tool", "{input_schema: {type: object, properties: {location: bar, unit: bar}, required: [location]}, name: name, allowed_callers: [direct], cache_control: {type: ephemeral, ttl: 5m}, defer_loading: true, description: Get the current weather in a given location, input_examples: [{foo: bar}], strict: true, type: custom}",
 		"--top-k", "5",
 		"--top-p", "0.7",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
 
@@ -78,7 +78,7 @@ func TestBetaMessagesCountTokens(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"beta:messages", "count-tokens",
-		"--message", "{content: [{text: What is a quaternion?, type: text, cache_control: {type: ephemeral, ttl: 5m}, citations: [{cited_text: cited_text, document_index: 0, document_title: x, end_char_index: 0, start_char_index: 0, type: char_location}]}], role: user}",
+		"--message", "{content: [{text: x, type: text, cache_control: {type: ephemeral, ttl: 5m}, citations: [{cited_text: cited_text, document_index: 0, document_title: x, end_char_index: 0, start_char_index: 0, type: char_location}]}], role: user}",
 		"--model", "claude-opus-4-5-20251101",
 		"--context-management", "{edits: [{type: clear_tool_uses_20250919, clear_at_least: {type: input_tokens, value: 0}, clear_tool_inputs: true, exclude_tools: [string], keep: {type: tool_uses, value: 0}, trigger: {type: input_tokens, value: 1}}]}",
 		"--mcp-server", "{name: name, type: url, url: url, authorization_token: authorization_token, tool_configuration: {allowed_tools: [string], enabled: true}}",
@@ -88,7 +88,7 @@ func TestBetaMessagesCountTokens(t *testing.T) {
 		"--thinking", "{budget_tokens: 1024, type: enabled}",
 		"--tool-choice", "{type: auto, disable_parallel_tool_use: true}",
 		"--tool", "{input_schema: {type: object, properties: {location: bar, unit: bar}, required: [location]}, name: name, allowed_callers: [direct], cache_control: {type: ephemeral, ttl: 5m}, defer_loading: true, description: Get the current weather in a given location, input_examples: [{foo: bar}], strict: true, type: custom}",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 
 	// Check that inner flags have been set up correctly
@@ -98,7 +98,7 @@ func TestBetaMessagesCountTokens(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"beta:messages", "count-tokens",
-		"--message.content", "[{text: What is a quaternion?, type: text, cache_control: {type: ephemeral, ttl: 5m}, citations: [{cited_text: cited_text, document_index: 0, document_title: x, end_char_index: 0, start_char_index: 0, type: char_location}]}]",
+		"--message.content", "[{text: x, type: text, cache_control: {type: ephemeral, ttl: 5m}, citations: [{cited_text: cited_text, document_index: 0, document_title: x, end_char_index: 0, start_char_index: 0, type: char_location}]}]",
 		"--message.role", "user",
 		"--model", "claude-opus-4-5-20251101",
 		"--context-management.edits", "[{type: clear_tool_uses_20250919, clear_at_least: {type: input_tokens, value: 0}, clear_tool_inputs: true, exclude_tools: [string], keep: {type: tool_uses, value: 0}, trigger: {type: input_tokens, value: 1}}]",
@@ -115,6 +115,6 @@ func TestBetaMessagesCountTokens(t *testing.T) {
 		"--thinking", "{budget_tokens: 1024, type: enabled}",
 		"--tool-choice", "{type: auto, disable_parallel_tool_use: true}",
 		"--tool", "{input_schema: {type: object, properties: {location: bar, unit: bar}, required: [location]}, name: name, allowed_callers: [direct], cache_control: {type: ephemeral, ttl: 5m}, defer_loading: true, description: Get the current weather in a given location, input_examples: [{foo: bar}], strict: true, type: custom}",
-		"--beta", "string",
+		"--beta", "message-batches-2024-09-24",
 	)
 }
