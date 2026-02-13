@@ -14,7 +14,7 @@ func TestBetaSkillsVersionsCreate(t *testing.T) {
 		t,
 		"beta:skills:versions", "create",
 		"--skill-id", "skill_id",
-		"--file", "",
+		"--file", "[null]",
 		"--beta", "message-batches-2024-09-24",
 	)
 }

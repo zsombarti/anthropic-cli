@@ -14,7 +14,7 @@ func TestBetaSkillsCreate(t *testing.T) {
 		t,
 		"beta:skills", "create",
 		"--display-title", "display_title",
-		"--file", "",
+		"--file", "[null]",
 		"--beta", "message-batches-2024-09-24",
 	)
 }
