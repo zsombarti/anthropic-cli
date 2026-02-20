@@ -1,4 +1,4 @@
 .prism.log
 dist/
-/cdp
+/ant
 *.exe

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -exuo pipefail
 
-BINARY_NAME="cdp"
+BINARY_NAME="ant"
 DIST_DIR="dist"
 FILENAME="dist.zip"
 

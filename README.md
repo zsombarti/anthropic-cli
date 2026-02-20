@@ -9,7 +9,7 @@ The official CLI for the [Anthropic REST API](https://docs.anthropic.com/claude/
 To test or install the CLI locally, you need [Go](https://go.dev/doc/install) version 1.22 or later installed.
 
 ```sh
-go install 'github.com/stainless-sdks/anthropic-cli/cmd/cdp@latest'
+go install 'github.com/stainless-sdks/anthropic-cli/cmd/ant@latest'
 ```
 
 Once you have run `go install`, the binary is placed in your Go bin directory:
@@ -38,11 +38,11 @@ After cloning the git repository for this project, you can use the
 The CLI follows a resource-based command structure:
 
 ```sh
-cdp [resource] <command> [flags...]
+ant [resource] <command> [flags...]
 ```
 
 ```sh
-cdp messages create \
+ant messages create \
   --max-tokens 1024 \
   --message '{content: [{text: x, type: text, cache_control: {type: ephemeral, ttl: 5m}, citations: [{cited_text: cited_text, document_index: 0, document_title: x, end_char_index: 0, start_char_index: 0, type: char_location}]}], role: user}' \
   --model claude-sonnet-4-5-20250929 \
@@ -81,15 +81,15 @@ For details about specific commands, use the `--help` flag.
 To pass files to your API, you can use the `@myfile.ext` syntax:
 
 ```bash
-cdp <command> --arg @abe.jpg
+ant <command> --arg @abe.jpg
 ```
 
 Files can also be passed inside JSON or YAML blobs:
 
 ```bash
-cdp <command> --arg '{image: "@abe.jpg"}'
+ant <command> --arg '{image: "@abe.jpg"}'
 # Equivalent:
-cdp <command> <<YAML
+ant <command> <<YAML
 arg:
   image: "@abe.jpg"
 YAML
@@ -99,7 +99,7 @@ If you need to pass a string literal that begins with an `@` sign, you can
 escape the `@` sign to avoid accidentally passing a file.
 
 ```bash
-cdp <command> --username '\@abe'
+ant <command> --username '\@abe'
 ```
 
 #### Explicit encoding
@@ -113,5 +113,5 @@ base64-encoding). Note that absolute paths will begin with `@file://` or
 `@data://`, followed by a third `/` (for example, `@file:///tmp/file.txt`).
 
 ```bash
-cdp <command> --arg @data://file.txt
+ant <command> --arg @data://file.txt
 ```
